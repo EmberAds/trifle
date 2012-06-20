@@ -64,7 +64,7 @@ describe Trifle::Loader do
 
       it "should read the files" do
         @loader.load_files @filenames
-        @loader.redis.llen(Trifle::KEY).should be == 4
+        @loader.redis.llen(@loader.key).should be == 4
       end
     end
 
@@ -97,7 +97,7 @@ describe Trifle::Loader do
 
       it "should load it in redis" do
         @loader.load_data @valid_data
-        @loader.redis.llen(Trifle::KEY).should be == 2
+        @loader.redis.llen(@loader.key).should be == 2
       end
     end
 
@@ -163,7 +163,7 @@ describe Trifle::Loader do
     it "should clear existing data" do
       @loader.load_data @valid_data
       @loader.clear
-      @loader.redis.llen(Trifle::KEY).should be == 0
+      @loader.redis.llen(@loader.key).should be == 0
     end
   end
 

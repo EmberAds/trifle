@@ -37,7 +37,7 @@ class Trifle
 
     def append row
       entry = row.values_at(2,3,4,5).join(":")
-      redis.rpush Trifle::KEY, entry
+      redis.rpush key, entry
     end
 
     def sort data
@@ -63,7 +63,7 @@ class Trifle
     end
 
     def clear
-      redis.del(Trifle::KEY)
+      redis.del key
     end
   end
 end

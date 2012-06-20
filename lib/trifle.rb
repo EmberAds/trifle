@@ -7,8 +7,6 @@ require "trifle/initialize_with_redis"
 class Trifle
   include InitializeWithRedis
 
-  KEY = "trifle".freeze
-
   def load options = {}
     loader.handle options
   end
@@ -20,10 +18,10 @@ class Trifle
   protected
 
   def loader
-    @loader = Loader.new(redis)
+    @loader = Loader.new(redis, key: key)
   end
 
   def finder
-    @finder = Finder.new(redis)
+    @finder = Finder.new(redis, key: key)
   end
 end
