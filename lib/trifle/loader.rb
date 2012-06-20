@@ -51,9 +51,7 @@ class Trifle
 
     def valid? data
       if data.is_a?(Array) && data.count > 0
-        return data.map do |row|
-          is_number(row[2]) && is_number(row[3])
-        end.select{|valid| !valid}.count == 0
+        return data.detect {|row| !is_number(row[2]) || !is_number(row[3])}.nil?
       end
       false
     end
