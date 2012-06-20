@@ -45,16 +45,21 @@ class Trifle
     end
 
     def parse contents
+      contents.gsub!('", "', '","')
       CSV.parse(contents)
     end
 
     def valid? data
       if data.is_a?(Array) && data.count > 0
         return data.map do |row|
-          row[2] =~ /^\d+$/ && row[3] =~ /^\d+$/
+          is_number(row[2]) && is_number(row[3])
         end.select{|valid| !valid}.count == 0
       end
       false
+    end
+
+    def is_number field
+      field.is_a?(Numeric) || field =~ /^\d+$/
     end
 
     def clear

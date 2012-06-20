@@ -122,6 +122,14 @@ describe Trifle::Loader do
     it "should raise an error for invalid csv data" do
       -> { @loader.parse('"foo",","#') }.should raise_error(CSV::MalformedCSVError)
     end
+
+    it "should handle ipv6 data" do
+      @ipv6csv = <<-CSV
+"2c0f:ffe8::", "2c0f:ffe8:ffff:ffff:ffff:ffff:ffff:ffff", "58569106662796955307479896348547874816", "58569106742025117821744233942091825151", "NG", "Nigeria"
+"2c0f:fff0::", "2c0f:fff0:ffff:ffff:ffff:ffff:ffff:ffff", "58569107296622255421594597096899477504", "58569107375850417935858934690443427839", "NG", "Nigeria"
+      CSV
+      -> { @loader.parse(@ipv6csv) }.should_not raise_error
+    end
   end
 
   describe "#sort" do
