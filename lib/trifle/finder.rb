@@ -29,7 +29,7 @@ class Trifle
     end
 
     def max
-      redis.llen key
+      redis.llen(key)
     end
 
     def entry_for index

@@ -51,4 +51,10 @@ trifle.find "192.168.1.1"
 ```
 
 
+## Release notes
+
+* **0.0.2** Added support for custom Redis key
+* **0.0.1** First draft
+
+
 
