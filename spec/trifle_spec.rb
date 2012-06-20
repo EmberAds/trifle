@@ -9,7 +9,7 @@ describe Trifle do
   describe "#load" do
     before do
       @trifle = Trifle.new(Redis.new)
-      @options = { filename: "foobar.csv" }
+      @options = { filenames: "foobar.csv" }
     end
 
     it "should pass this to the loader" do

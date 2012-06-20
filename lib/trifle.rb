@@ -7,6 +7,8 @@ require "trifle/initialize_with_redis"
 class Trifle
   include InitializeWithRedis
 
+  KEY = "triffle".freeze
+
   def load options = {}
     loader.handle options
   end
