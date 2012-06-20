@@ -1,0 +1,40 @@
+GIT
+  remote: git://github.com/caius/fakeredis.git
+  revision: ab336ff1edf50c259b557559f42316fe15a4feb7
+  branch: redis-rb-3
+  specs:
+    fakeredis (0.3.1)
+      redis (>= 3.0.0)
+
+PATH
+  remote: .
+  specs:
+    trifle (0.0.2)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    active_support (3.0.0)
+      activesupport (= 3.0.0)
+    activesupport (3.0.0)
+    diff-lcs (1.1.3)
+    redis (3.0.1)
+    rspec (2.10.0)
+      rspec-core (~> 2.10.0)
+      rspec-expectations (~> 2.10.0)
+      rspec-mocks (~> 2.10.0)
+    rspec-core (2.10.1)
+    rspec-expectations (2.10.0)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.10.1)
+    rujitsu (0.3.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  active_support
+  fakeredis!
+  rspec
+  rujitsu
+  trifle!
