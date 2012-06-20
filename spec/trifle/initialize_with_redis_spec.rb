@@ -15,7 +15,6 @@ describe Trifle::InitializeWithRedis do
 
     it "should fail without a redis instance" do
       -> { @klass.new(nil) }.should raise_error(ArgumentError)
-      -> { @klass.new("http://127.0.0.1:3000/") }.should raise_error(ArgumentError)
     end
   end
 
