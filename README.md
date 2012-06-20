@@ -2,6 +2,10 @@
 
 Stores the GeoIP databases in Redis and gives it a simple way to lookup IPs and map them to countries/country codes.
 
+Get your GeoIP country CSVs from http://www.maxmind.com/app/geolite.
+
+Trifle supports both the IPV4 and IPV6 databases.
+
 ## Installation
 
 Install the gem
