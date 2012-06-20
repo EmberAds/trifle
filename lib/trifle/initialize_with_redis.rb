@@ -3,7 +3,7 @@ class Trifle
     attr_accessor :redis
 
     def initialize redis
-      raise ArgumentError.new("Redis object expected") unless redis
+      raise ArgumentError.new("Redis-like object expected") unless redis
       self.redis = redis
     end
   end
