@@ -44,7 +44,7 @@ trifle = Trifle.new(Redis.new, key: "foobar")
 You can also load the Trifle from the command line:
 
 ```
-trifle file1.csv file2.csv
+trifle redis://127.0.0.1:6379/0 file1.csv file2.csv
 ```
 
 ### Lookup
@@ -65,6 +65,7 @@ trifle.find "192.168.1.1"
 
 ## Release notes
 
+* **0.0.4** Changed binary syntax
 * **0.0.3** Added a binary for loading Trifle from the command line
 * **0.0.2** Added support for custom Redis key
 * **0.0.1** First draft
