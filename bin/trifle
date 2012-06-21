@@ -2,36 +2,30 @@
 require "redis"
 require "trifle"
 
-if ARGV.count < 1
-  puts "Syntax: `trifle options filenames"
-  puts "e.g. `trifle --host:127.0.0.1 --port:6380 filename1 filename2"
-  puts "Options include the usual Redis options (--scheme, --host, --port, etc)"
-  puts "and an extra option to override the `--key`"
+if ARGV.count < 2
+  puts "Syntax: `trifle redis filenames --key=your_key"
+  puts "e.g. `trifle redis://127.0.0.1:6379/6 filename1 filename2 --key=my_key"
   exit(1)
 end
 
-redis_config = {}
-trifle_options = {}
+redis = Redis.new(url: ARGV[0])
+ARGV.shift
+
 filenames = []
+options = {}
 
 ARGV.each do |arg|
   if arg.match(/^--/)
-    vals = arg.split(":")
-    key = vals.first.gsub("--", "")
-    vals.pop
-    value = vals.join(":")
-
-    if key == "key"
-      trifle_options[key] = value
-    else
-      redis_config[key] = value
-    end
+    option = arg.split("=")
+    key = option[0].gsub("--")
+    option.shift
+    value = option.join("=")
+    options[key] = value
   else
     filenames << arg
   end
 end
 
-redis = Redis.new redis_config
 puts "Loading #{filenames.join(", ")}"
-Trifle.new(redis, trifle_options).load(filenames: filenames)
+Trifle.new(redis, options).load(filenames: filenames)
 puts "Trifle loaded"
