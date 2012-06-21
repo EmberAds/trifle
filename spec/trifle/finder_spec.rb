@@ -37,6 +37,10 @@ describe Trifle::Finder do
       @trifle.load(data: [["82.132.242.55","82.132.242.55","1384444471","1384444471","GB","United Kingdrom"]])
       @finder.handle("127.0.0.1").should be_nil
     end
+
+    it "should handle nil ips" do
+      @finder.handle(nil).should be_nil
+    end
   end
 
 end

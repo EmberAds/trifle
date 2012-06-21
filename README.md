@@ -65,6 +65,7 @@ trifle.find "192.168.1.1"
 
 ## Release notes
 
+* **0.0.6** Added a fix for invalid IPs
 * **0.0.5** Fixed bug when finding IPs at the edge of the data set
 * **0.0.4** Changed binary syntax
 * **0.0.3** Added a binary for loading Trifle from the command line

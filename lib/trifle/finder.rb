@@ -8,6 +8,8 @@ class Trifle
     def handle ip
       ip_i = IPAddr.new(ip).to_i
       find(ip_i, 0, max)
+    rescue ArgumentError => ex
+      nil
     end
 
     protected
