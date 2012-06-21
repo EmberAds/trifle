@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+require "redis"
+require "trifle"
+
+if ARGV.count < 1
+  puts "Syntax: `trifle options filenames"
+  puts "e.g. `trifle --host:127.0.0.1 --port:6380 filename1 filename2"
+  puts "Options include the usual Redis options (--scheme, --host, --port, etc)"
+  puts "and an extra option to override the `--key`"
+  exit(1)
+end
+
+redis_config = {}
+trifle_options = {}
+filenames = []
+
+ARGV.each do |arg|
+  if arg.match(/^--/)
+    vals = arg.split(":")
+    key = vals.first.gsub("--", "")
+    vals.pop
+    value = vals.join(":")
+
+    if key == "key"
+      trifle_options[key] = value
+    else
+      redis_config[key] = value
+    end
+  else
+    filenames << arg
+  end
+end
+
+redis = Redis.new redis_config
+puts "Loading #{filenames.join(", ")}"
+Trifle.new(redis, trifle_options).load(filenames: filenames)
+puts "Trifle loaded"

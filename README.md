@@ -35,6 +35,12 @@ trifle.load filenames: ["file1.csv", "file2.csv"]
 trifle.load data: preloaded_array
 ```
 
+Additionally you can specify your own Redis key to store the Trifle in:
+
+```ruby
+trifle = Trifle.new(Redis.new, key: "foobar")
+```
+
 ### Lookup
 
 ```ruby
@@ -53,6 +59,7 @@ trifle.find "192.168.1.1"
 
 ## Release notes
 
+* **0.0.3** Added a binary for loading Trifle from the command line
 * **0.0.2** Added support for custom Redis key
 * **0.0.1** First draft
 
