@@ -41,6 +41,12 @@ Additionally you can specify your own Redis key to store the Trifle in:
 trifle = Trifle.new(Redis.new, key: "foobar")
 ```
 
+You can also load the Trifle from the command line:
+
+```
+trifle file1.csv file2.csv
+```
+
 ### Lookup
 
 ```ruby
