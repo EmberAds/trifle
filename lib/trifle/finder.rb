@@ -13,7 +13,7 @@ class Trifle
     protected
 
     def find ip_i, lower, upper
-      return nil if lower > upper
+      return nil if lower >= upper
 
       index = (lower+upper)/2
 

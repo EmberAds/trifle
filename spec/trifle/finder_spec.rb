@@ -17,9 +17,9 @@ describe Trifle::Finder do
       ["223.255.255.0","223.255.255.255","3758096128","3758096383","AU","Australia"]
     ]
     @redis = Redis.new
-    trifle = Trifle.new(@redis)
+    @trifle = Trifle.new(@redis)
     @finder = Trifle::Finder.new(@redis)
-    trifle.load(data: @valid_data)
+    @trifle.load(data: @valid_data)
   end
 
   describe "#handle" do
@@ -30,6 +30,11 @@ describe Trifle::Finder do
     end
 
     it "should return nil if the entry wasn't found" do
+      @finder.handle("127.0.0.1").should be_nil
+    end
+
+    it "should not fail if there's only 1 record" do
+      @trifle.load(data: [["82.132.242.55","82.132.242.55","1384444471","1384444471","GB","United Kingdrom"]])
       @finder.handle("127.0.0.1").should be_nil
     end
   end
