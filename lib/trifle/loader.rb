@@ -17,6 +17,16 @@ class Trifle
       end
     end
 
+    def tmp_key
+      "#{key}:tmp"
+    end
+
+    def clear
+      redis.del key
+    end
+
+    protected
+
     def load_files filenames
       raise ArgumentError.new("filenames must be an array of strings") unless filenames.is_a?(Array) && !filenames.map{|element| element.is_a?(String)}.include?(false)
 
@@ -33,11 +43,12 @@ class Trifle
       clear
       sort(data)
       data.each {|row| append(row) }
+      move
     end
 
     def append row
       entry = row.values_at(2,3,4,5).join(":")
-      redis.rpush key, entry
+      redis.rpush tmp_key, entry
     end
 
     def sort data
@@ -60,8 +71,8 @@ class Trifle
       field.is_a?(Numeric) || field =~ /^\d+$/
     end
 
-    def clear
-      redis.del key
+    def move
+      redis.rename tmp_key, key
     end
   end
 end
