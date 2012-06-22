@@ -17,6 +17,16 @@ class Trifle
       end
     end
 
+    def tmp_key
+      "#{key}:tmp"
+    end
+
+    def clear
+      redis.del key
+    end
+
+    protected
+
     def load_files filenames
       raise ArgumentError.new("filenames must be an array of strings") unless filenames.is_a?(Array) && !filenames.map{|element| element.is_a?(String)}.include?(false)
 
@@ -61,16 +71,8 @@ class Trifle
       field.is_a?(Numeric) || field =~ /^\d+$/
     end
 
-    def clear
-      redis.del key
-    end
-
     def move
       redis.rename tmp_key, key
-    end
-
-    def tmp_key
-      "#{key}:tmp"
     end
   end
 end
