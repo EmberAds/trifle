@@ -99,6 +99,13 @@ describe Trifle::Loader do
         @loader.load_data @valid_data
         @loader.redis.llen(@loader.key).should be == 2
       end
+
+      it "should load via a tmp key to ensure no downtime" do
+        @loader.should_receive(:move)
+        @loader.load_data @valid_data
+        @loader.redis.get(@loader.key).should be_nil
+        @loader.redis.llen(@loader.tmp_key).should be == 2
+      end
     end
 
     context "when given invalid data" do

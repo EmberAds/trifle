@@ -33,11 +33,12 @@ class Trifle
       clear
       sort(data)
       data.each {|row| append(row) }
+      move
     end
 
     def append row
       entry = row.values_at(2,3,4,5).join(":")
-      redis.rpush key, entry
+      redis.rpush tmp_key, entry
     end
 
     def sort data
@@ -62,6 +63,14 @@ class Trifle
 
     def clear
       redis.del key
+    end
+
+    def move
+      redis.rename tmp_key, key
+    end
+
+    def tmp_key
+      "#{key}:tmp"
     end
   end
 end

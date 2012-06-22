@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    trifle (0.0.5)
+    trifle (0.0.7)
 
 GEM
   remote: http://rubygems.org/
