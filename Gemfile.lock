@@ -9,7 +9,8 @@ GIT
 PATH
   remote: .
   specs:
-    trifle (0.0.5)
+    trifle (0.0.7)
+      redis
 
 GEM
   remote: http://rubygems.org/
@@ -27,7 +28,6 @@ GEM
     rspec-expectations (2.10.0)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.10.1)
-    rujitsu (0.3.3)
 
 PLATFORMS
   ruby
@@ -36,5 +36,4 @@ DEPENDENCIES
   active_support
   fakeredis!
   rspec
-  rujitsu
   trifle!

@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rujitsu'
   s.add_development_dependency 'active_support'
   s.add_development_dependency "fakeredis", "~> 0.3.0"
+
+  s.add_dependency 'redis'
 end
