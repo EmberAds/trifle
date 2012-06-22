@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Trifle::VERSION
   s.authors     = ["Cristiano Betta"]
   s.email       = ["cristiano@emberads.com"]
-  s.homepage    = "http://emberads.com"
+  s.homepage    = "http://github.com/EmberAds/trifle"
   s.summary     = "A GeoIP lookup in Redis"
   s.description = "Stores the GeoIP databases in Redis and gives it a simple way to lookup IPs and map them to countries"
 

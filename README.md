@@ -6,6 +6,10 @@ Get your GeoIP country CSVs from http://www.maxmind.com/app/geolite.
 
 Trifle supports both the IPV4 and IPV6 databases.
 
+## Why?
+
+Loading the GeoIP databases from disk is slow, and doing that for every request is a pain. Trifle keeps your GeoIP database in memory and makes it easy to query.
+
 ## Installation
 
 Install the gem
@@ -62,7 +66,6 @@ trifle.find "192.168.1.1"
 # => nil
 ```
 
-
 ## Release notes
 
 * **0.0.7** Loading now happens into separate key, making loading possible without downtime
@@ -72,6 +75,11 @@ trifle.find "192.168.1.1"
 * **0.0.3** Added a binary for loading Trifle from the command line
 * **0.0.2** Added support for custom Redis key
 * **0.0.1** First draft
+
+## Future releases
+
+* Allow for loading of more data than just country data
+* Split country data into separate Redis records
 
 ## License
 
