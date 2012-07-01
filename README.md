@@ -1,5 +1,7 @@
 # Trifle
 
+!(Build status)[https://secure.travis-ci.org/EmberAds/trifle.png?branch=master]
+
 Stores the GeoIP databases in Redis and gives it a simple way to lookup IPs and map them to countries/country codes.
 
 Get your GeoIP country CSVs from http://www.maxmind.com/app/geolite.
