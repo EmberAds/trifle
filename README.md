@@ -68,6 +68,7 @@ trifle.find "192.168.1.1"
 
 ## Release notes
 
+* **0.1.0** API change. Now backwards compatible. Added city files support.
 * **0.0.7** Loading now happens into separate key, making loading possible without downtime
 * **0.0.6** Added a fix for invalid IPs
 * **0.0.5** Fixed bug when finding IPs at the edge of the data set

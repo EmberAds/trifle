@@ -21,10 +21,6 @@ class Trifle
       "#{key}:tmp"
     end
 
-    def clear
-      redis.del key
-    end
-
     protected
 
     def load_files filenames
@@ -33,16 +29,17 @@ class Trifle
       data = []
       filenames.each do |filename|
         contents = File.open(filename, "rb").read
-        data += parse(contents)
+        data << parse(contents)
       end
       load_data data
     end
 
     def load_data data
-      raise ArgumentError.new("data must be an array as loaded from a GeoIP data set") unless valid?(data)
-      clear
-      sort(data)
-      data.each {|row| append(row) }
+      sanitized_data = Trifle::Loader::Sanitizer.new.process(data)
+      raise ArgumentError.new("data must be an array as loaded from a GeoIP data set")
+      sanitized_data.each do |category, rows|
+        rows.each {|row| append(category, row) }
+      end
       move
     end
 
@@ -51,20 +48,9 @@ class Trifle
       redis.rpush tmp_key, entry
     end
 
-    def sort data
-      data.sort {|a,b| a[2] <=> b[2] }
-    end
-
     def parse contents
       contents.gsub!('", "', '","')
       CSV.parse(contents)
-    end
-
-    def valid? data
-      if data.is_a?(Array) && data.count > 0
-        return data.detect {|row| !is_number(row[2]) || !is_number(row[3])}.nil?
-      end
-      false
     end
 
     def is_number field

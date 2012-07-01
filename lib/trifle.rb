@@ -1,6 +1,7 @@
 # Trifle is a simple storage and lookup gem for GeoIP data
 # using Redis as storage
 require "trifle/loader"
+require "trifle/loader/sanitizer"
 require "trifle/finder"
 require "trifle/initialize_with_redis"
 
