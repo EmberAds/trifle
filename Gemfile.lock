@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    trifle (0.0.7)
+    trifle (0.0.8)
       redis
 
 GEM
