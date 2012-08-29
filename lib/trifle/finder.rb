@@ -15,14 +15,13 @@ class Trifle
     protected
 
     def find ip_i, lower, upper
-      return nil if lower >= upper
-
       index = (lower+upper)/2
-
       current = entry_for(index)
 
       if in_range(current, ip_i)
         current.last(2)
+      elsif lower >= upper
+        nil
       elsif ip_i < current[0]
         find ip_i, lower, index-1
       else
@@ -31,7 +30,7 @@ class Trifle
     end
 
     def max
-      redis.llen(key)
+      redis.llen(key)-1
     end
 
     def entry_for index
