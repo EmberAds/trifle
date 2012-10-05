@@ -1,6 +1,6 @@
 # Trifle
 
-![Build status](https://secure.travis-ci.org/EmberAds/trifle.png?branch=master)
+[![Build status](https://secure.travis-ci.org/EmberAds/trifle.png?branch=master)](https://travis-ci.org/#!/EmberAds/trifle)
 
 Stores the GeoIP databases in Redis and gives it a simple way to lookup IPs and map them to countries/country codes.
 
@@ -16,9 +16,7 @@ Loading the GeoIP databases from disk is slow, and doing that for every request 
 
 Install the gem
 
-```
-gem install trifle
-```
+    gem install trifle
 
 or add it to your Gemfile and bundle
 
@@ -49,9 +47,7 @@ trifle = Trifle.new(Redis.new, key: "foobar")
 
 You can also load the Trifle from the command line:
 
-```
-trifle redis://127.0.0.1:6379/0 file1.csv file2.csv
-```
+    trifle redis://127.0.0.1:6379/0 file1.csv file2.csv
 
 ### Lookup
 
