@@ -52,6 +52,11 @@ describe Trifle::Finder do
     it "should handle nil ips" do
       @finder.handle(nil).should be_nil
     end
-  end
 
+    it "should handle ipv6 compatible ipv4 addresses" do
+      @finder.handle("::ffff:223.255.128.0").should be == ["HK", "Hong Kong"]
+      @finder.handle("::ffff:223.255.244.10").should be == ["IN", "India"]
+      @finder.handle("::ffff:223.255.255.255").should be == ["AU","Australia"]
+    end
+  end
 end
