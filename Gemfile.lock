@@ -1,16 +1,15 @@
 GIT
-  remote: git://github.com/caius/fakeredis.git
-  revision: ab336ff1edf50c259b557559f42316fe15a4feb7
-  branch: redis-rb-3
+  remote: git://github.com/guilleiguaran/fakeredis.git
+  revision: 534517a139b129e29366302e8c75232e6b9d2754
   specs:
-    fakeredis (0.3.1)
-      redis (>= 3.0.0)
+    fakeredis (0.4.1)
+      redis (~> 3.0.0)
 
 PATH
   remote: .
   specs:
     trifle (0.0.8)
-      redis
+      redis (>= 3.0.0)
 
 GEM
   remote: http://rubygems.org/
