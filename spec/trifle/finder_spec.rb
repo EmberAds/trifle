@@ -58,5 +58,9 @@ describe Trifle::Finder do
       @finder.handle("::ffff:223.255.244.10").should be == ["IN", "India"]
       @finder.handle("::ffff:223.255.255.255").should be == ["AU","Australia"]
     end
+    it "should return nil if the store is empty (and nothing is found)" do
+      @redis.flushdb
+      @finder.handle("127.0.0.1").should be_nil
+    end
   end
 end

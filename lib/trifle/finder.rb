@@ -18,6 +18,8 @@ class Trifle
       index = (lower+upper)/2
       current = entry_for(index)
 
+      return unless current
+
       if in_range(current, ip_i)
         current.last(2)
       elsif lower >= upper
@@ -34,7 +36,9 @@ class Trifle
     end
 
     def entry_for index
-      entry = redis.lindex(key, index).split(":")
+      entry = redis.lindex(key, index)
+      return unless entry
+      entry = entry.split(":")
       entry[0] = entry[0].to_i
       entry[1] = entry[1].to_i
       entry
