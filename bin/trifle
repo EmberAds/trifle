@@ -8,7 +8,7 @@ if ARGV.count < 2
   exit(1)
 end
 
-redis = Redis.new(url: ARGV[0])
+redis = Redis.new(:url => ARGV[0])
 ARGV.shift
 
 filenames = []
@@ -27,5 +27,5 @@ ARGV.each do |arg|
 end
 
 puts "Loading #{filenames.join(", ")}"
-Trifle.new(redis, options).load(filenames: filenames)
+Trifle.new(redis, options).load(:filenames => filenames)
 puts "Trifle loaded"

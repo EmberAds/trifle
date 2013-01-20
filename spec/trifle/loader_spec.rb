@@ -128,7 +128,8 @@ describe Trifle::Loader do
     end
 
     it "should raise an error for invalid csv data" do
-      lambda { @loader.send(:parse, '"foo",","#') }.should raise_error(CSV::MalformedCSVError)
+      csv = RUBY_VERSION =~ /^1\.8/ ? FasterCSV : CSV
+      lambda { @loader.send(:parse, '"foo",","#') }.should raise_error(csv::MalformedCSVError)
     end
 
     it "should handle ipv6 data" do
