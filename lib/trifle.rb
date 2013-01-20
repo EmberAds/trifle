@@ -18,10 +18,10 @@ class Trifle
   protected
 
   def loader
-    @loader = Loader.new(redis, key: key)
+    @loader = Loader.new(redis, :key => key)
   end
 
   def finder
-    @finder = Finder.new(redis, key: key)
+    @finder = Finder.new(redis, :key => key)
   end
 end

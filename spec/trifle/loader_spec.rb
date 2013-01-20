@@ -25,7 +25,7 @@ describe Trifle::Loader do
       it "should pass it on to load_files" do
         filename = 'data.csv'
         @loader.should_receive(:load_files).with([filename])
-        @loader.handle(filename: filename)
+        @loader.handle(:filename => filename)
       end
     end
 
@@ -33,7 +33,7 @@ describe Trifle::Loader do
       it "should pass it on to load_files" do
         filenames = ['data1.csv', 'data2.csv']
         @loader.should_receive(:load_files).with(filenames)
-        @loader.handle(filenames: filenames)
+        @loader.handle(:filenames => filenames)
       end
     end
 
@@ -41,14 +41,14 @@ describe Trifle::Loader do
       it "should pass it on to load_data" do
         data = [:foo, :bar]
         @loader.should_receive(:load_data).with(data)
-        @loader.handle(data: data)
+        @loader.handle(:data => data)
       end
     end
 
     context "when given anything else" do
       it "should raise an error" do
-        -> { @loader.handle(foo: :bar) }.should raise_error(ArgumentError)
-        -> { @loader.handle }.should raise_error(ArgumentError)
+        lambda { @loader.handle(:foo => :bar) }.should raise_error(ArgumentError)
+        lambda { @loader.handle }.should raise_error(ArgumentError)
       end
     end
   end
@@ -70,14 +70,14 @@ describe Trifle::Loader do
 
     context "when given anything but an array of strings" do
       it "should raise an error" do
-        -> { @loader.send(:load_files, "") }.should raise_error(ArgumentError)
-        -> { @loader.send(:load_files, [:foo]) }.should raise_error(ArgumentError)
+        lambda { @loader.send(:load_files, "") }.should raise_error(ArgumentError)
+        lambda { @loader.send(:load_files, [:foo]) }.should raise_error(ArgumentError)
       end
     end
 
     context "when given a filename for a file that's missing" do
       it "should raise an error" do
-        -> { @loader.send(:load_files,  ["foobar.csv"]) }.should raise_error(/No such file or directory - foobar.csv/)
+        lambda { @loader.send(:load_files,  ["foobar.csv"]) }.should raise_error(/No such file or directory - foobar.csv/)
       end
     end
   end
@@ -111,13 +111,13 @@ describe Trifle::Loader do
     context "when given invalid data" do
       it "should raise an error" do
         @loader.should_receive(:valid?).and_return(false)
-        -> { @loader.send(:load_data, @valid_data) }.should raise_error(ArgumentError)
+        lambda { @loader.send(:load_data, @valid_data) }.should raise_error(ArgumentError)
       end
     end
 
     context "when given anything but an array" do
       it "should raise an error" do
-        -> { @loader.send(:load_data, :rubbish) }.should raise_error(ArgumentError)
+        lambda { @loader.send(:load_data, :rubbish) }.should raise_error(ArgumentError)
       end
     end
   end
@@ -128,7 +128,7 @@ describe Trifle::Loader do
     end
 
     it "should raise an error for invalid csv data" do
-      -> { @loader.send(:parse, '"foo",","#') }.should raise_error(CSV::MalformedCSVError)
+      lambda { @loader.send(:parse, '"foo",","#') }.should raise_error(CSV::MalformedCSVError)
     end
 
     it "should handle ipv6 data" do
@@ -136,7 +136,7 @@ describe Trifle::Loader do
         "2c0f:ffe8::", "2c0f:ffe8:ffff:ffff:ffff:ffff:ffff:ffff", "58569106662796955307479896348547874816", "58569106742025117821744233942091825151", "NG", "Nigeria"
         "2c0f:fff0::", "2c0f:fff0:ffff:ffff:ffff:ffff:ffff:ffff", "58569107296622255421594597096899477504", "58569107375850417935858934690443427839", "NG", "Nigeria"
       CSV
-      -> { @loader.send(:parse, @ipv6csv) }.should_not raise_error
+      lambda { @loader.send(:parse, @ipv6csv) }.should_not raise_error
     end
   end
 

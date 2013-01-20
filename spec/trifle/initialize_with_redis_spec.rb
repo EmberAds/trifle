@@ -14,11 +14,11 @@ describe Trifle::InitializeWithRedis do
     end
 
     it "should fail without a redis instance" do
-      -> { @klass.new(nil) }.should raise_error(ArgumentError)
+      lambda { @klass.new(nil) }.should raise_error(ArgumentError)
     end
 
     it "should accept an optional redis key" do
-      instance = @klass.new(Redis.new, key: "foo")
+      instance = @klass.new(Redis.new, :key => "foo")
       instance.key.should be == "foo"
     end
   end

@@ -1,4 +1,4 @@
-require_relative "initialize_with_redis"
+require "trifle/initialize_with_redis"
 require "csv"
 
 class Trifle

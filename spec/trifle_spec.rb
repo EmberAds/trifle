@@ -15,7 +15,7 @@ describe Trifle do
 
     it "should pass this to the loader" do
       loader = mock Trifle::Loader
-      Trifle::Loader.should_receive(:new).with(@redis, key: @trifle.key).and_return(loader)
+      Trifle::Loader.should_receive(:new).with(@redis, :key => @trifle.key).and_return(loader)
       loader.should_receive(:handle).with(@options)
       @trifle.load @options
     end
@@ -30,7 +30,7 @@ describe Trifle do
 
     it "should pass this to the finder" do
       finder = mock Trifle::Finder
-      Trifle::Finder.should_receive(:new).with(@redis, key: @trifle.key).and_return(finder)
+      Trifle::Finder.should_receive(:new).with(@redis, :key => @trifle.key).and_return(finder)
       finder.should_receive(:handle).with(@ip)
       @trifle.find @ip
     end
