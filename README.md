@@ -67,6 +67,8 @@ trifle.find "192.168.1.1"
 ## Release notes
 
 * **0.1.1** Made 1.8.7 compatible
+* **0.1.0** Handle lookup bug with no data defined
+* **0.0.9** Adds support for IPV6-style IPV4 addresses
 * **0.0.8** Fixed a search bug that created conflicts between IPv4 and IPv6 data
 * **0.0.7** Loading now happens into separate key, making loading possible without downtime
 * **0.0.6** Added a fix for invalid IPs
