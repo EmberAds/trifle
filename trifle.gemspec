@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "fakeredis", ">= 0.4.0"
 
   s.add_dependency "redis", ">= 3.0.0"
+  s.add_dependency "fastercsv", ">= 1.5.5"
 end

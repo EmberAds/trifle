@@ -1,4 +1,5 @@
 require "trifle/initialize_with_redis"
+require "fastercsv"
 require "csv"
 
 class Trifle
@@ -57,7 +58,8 @@ class Trifle
 
     def parse contents
       contents.gsub!('", "', '","')
-      CSV.parse(contents)
+      csv = RUBY_VERSION =~ /^1\.8/ ? FasterCSV : CSV
+      csv.parse(contents)
     end
 
     def valid? data
