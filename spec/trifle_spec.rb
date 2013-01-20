@@ -10,7 +10,7 @@ describe Trifle do
     before do
       @redis = Redis.new
       @trifle = Trifle.new(@redis)
-      @options = { filenames: "foobar.csv" }
+      @options = { :filenames => "foobar.csv" }
     end
 
     it "should pass this to the loader" do
