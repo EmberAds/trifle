@@ -1,6 +1,6 @@
 # Trifle
 
-[![Build status](https://secure.travis-ci.org/EmberAds/trifle.png?branch=master)](https://travis-ci.org/#!/EmberAds/trifle)
+[![Build status](https://secure.travis-ci.org/EmberAds/trifle.png?branch=master)](https://travis-ci.org/#!/EmberAds/trifle) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/EmberAds/trifle)
 
 Stores the GeoIP databases in Redis and gives it a simple way to lookup IPs and map them to countries/country codes.
 
